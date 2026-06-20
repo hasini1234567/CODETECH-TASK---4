@@ -1,0 +1,52 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data = {
+    "City": ["Hyderabad", "Mumbai", "Delhi", "Bangalore", "Chennai",
+             "Pune", "Kolkata", "Ahmedabad", "Jaipur", "Lucknow"],
+    "Average_Price_Lakhs": [75, 120, 110, 95, 80, 85, 70, 65, 60, 55],
+    "Houses_Sold": [500, 450, 400, 550, 350, 420, 300, 280, 250, 220],
+    "Year": [2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025]
+}
+df = pd.DataFrame(data)
+print("Housing Market Dataset")
+print(df)
+print("\nDataset Information")
+print(df.info())
+print("\nStatistical Summary")
+print(df.describe())
+avg_price = df["Average_Price_Lakhs"].mean()
+print("\nAverage House Price (Lakhs):", avg_price)
+total_sold = df["Houses_Sold"].sum()
+print("Total Houses Sold:", total_sold)
+expensive_city = df.loc[df["Average_Price_Lakhs"].idxmax()]
+print("\nMost Expensive City:")
+print(expensive_city)
+highest_sales = df.loc[df["Houses_Sold"].idxmax()]
+print("\nCity with Highest Houses Sold:")
+print(highest_sales)
+plt.figure(figsize=(10,5))
+plt.bar(df["City"], df["Average_Price_Lakhs"])
+plt.title("Average House Prices by City")
+plt.xlabel("City")
+plt.ylabel("Price (Lakhs)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+plt.figure(figsize=(10,5))
+plt.plot(df["City"], df["Houses_Sold"], marker='o')
+plt.title("Houses Sold by City")
+plt.xlabel("City")
+plt.ylabel("Number of Houses Sold")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+plt.figure(figsize=(8,5))
+plt.hist(df["Average_Price_Lakhs"], bins=5)
+plt.title("Distribution of House Prices")
+plt.xlabel("Price (Lakhs)")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+
+print("\nHousing Market Trends Analysis Completed Successfully!")
